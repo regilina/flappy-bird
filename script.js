@@ -7,6 +7,10 @@ const img = new Image()
 img.src = imgURL
 
 const SPEED = 3.1
+
+// ширина и высота птицы
+const SIZE = [51, 36]
+
 let index = 0
 
 const render = () => {
@@ -28,8 +32,6 @@ const render = () => {
     height: canvas.height
   }
 
-  // вторая часть фонового изображения, которая
-  // идёт следом за первой
   const bgPartTwoResult = {
     x: backgroudX,
     y: 0,
@@ -63,6 +65,38 @@ const render = () => {
     bgPartTwoResult.y,
     bgPartTwoResult.width,
     bgPartTwoResult.height
+  )
+
+  // изображение птицы, которое копируем
+  // из изображения-источника
+  const birdSource = {
+    x: 432,
+    y: Math.floor((index % 9) / 3) * SIZE[1],
+    width: SIZE[0],
+    height: SIZE[1]
+  }
+
+  // координаты, по которым птица
+  // будет расположена на Canvas
+  const birdResult = {
+    x: canvas.width / 2 - SIZE[0] / 2,
+    y: 200,
+    width: SIZE[0],
+    height: SIZE[1]
+  }
+
+  ctx.drawImage(
+    img,
+
+    birdSource.x,
+    birdSource.y,
+    birdSource.width,
+    birdSource.height,
+
+    birdResult.x,
+    birdResult.y,
+    birdResult.width,
+    birdResult.height
   )
 
   window.requestAnimationFrame(render)
