@@ -68,6 +68,8 @@ class Bird {
   }
 
   render () {
+    this.index += 0.3 // Обновляем индекс для анимации
+
     const birdSource = {
       x: 432,
       y: Math.floor((this.index % 9) / 3) * this.SIZE[1],
