@@ -185,41 +185,43 @@ class Foreground {
     this.sY = 0
     this.w = 224
     this.h = 112
-    this.x = 0
-    this.y = this.cvs.height - 112
+    this.dx = 2 // Скорость движения земли
 
-    this.dx = 2
+    // Рассчитываем количество экземпляров земли
+    this.numberOfInstances = Math.ceil(this.cvs.width / this.w) + 1
+
+    // Создаем массив для хранения позиций каждого экземпляра
+    this.positions = Array.from({ length: this.numberOfInstances }, (_, i) => ({
+      x: i * this.w,
+      y: this.cvs.height - this.h
+    }))
   }
 
   draw () {
-    this.ctx.drawImage(
-      this.sprite,
-      this.sX,
-      this.sY,
-      this.w,
-      this.h,
-      this.x,
-      this.y,
-      this.w,
-      this.h
-    )
-
-    this.ctx.drawImage(
-      this.sprite,
-      this.sX,
-      this.sY,
-      this.w,
-      this.h,
-      this.x + this.w,
-      this.y,
-      this.w,
-      this.h
-    )
+    for (const position of this.positions) {
+      this.ctx.drawImage(
+        this.sprite,
+        this.sX,
+        this.sY,
+        this.w,
+        this.h,
+        position.x,
+        position.y,
+        this.w,
+        this.h
+      )
+    }
   }
 
   update () {
     if (game.state.current == game.state.game) {
-      this.x = (this.x - this.dx) % (this.w / 2)
+      for (const position of this.positions) {
+        position.x -= this.dx
+        if (position.x + this.w < 0) {
+          // Если экземпляр земли полностью вышел за пределы холста, перемещаем его в конец
+          position.x += this.numberOfInstances * this.w
+        }
+      }
     }
   }
 }
@@ -460,7 +462,7 @@ class Score {
     this.ctx.fillStyle = '#FFF'
     this.ctx.strokeStyle = '#000'
 
-    if (game.state.current == game.state.game) {
+    if (game.state.current === game.state.game) {
       this.ctx.lineWidth = 2
       this.ctx.font = '35px Teko'
       this.ctx.fillText(this.value, game.cvs.width / 2, 50)
