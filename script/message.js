@@ -1,4 +1,4 @@
-import { game } from './script.js'
+import { game } from './game.js'
 
 export default class Message {
   constructor (ctx, sprite, cvs, sX, sY, w, h, x, y) {
