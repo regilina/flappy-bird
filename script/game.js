@@ -116,8 +116,11 @@ export default class Game {
     this.pipes.draw()
     this.fg.draw()
     this.bird.draw()
-    this.getReady.draw()
-    this.gameOver.draw()
+    if (game.state.current == game.state.getReady) {
+      this.getReady.draw()
+    } else if (game.state.current == game.state.over) {
+      this.gameOver.draw()
+    }
     this.score.draw()
   }
 
