@@ -19,7 +19,7 @@ export default class Pipes {
 
     this.w = 53
     this.h = 400
-    this.gap = 240
+    this.gap = 130
     this.maxYPos = -150
     this.dx = 2
   }
