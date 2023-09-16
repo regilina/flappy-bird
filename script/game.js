@@ -5,6 +5,12 @@ import Message from './message.js'
 import Pipes from './pipes.js'
 import Score from './score.js'
 
+import {
+  GAME_STATES,
+  SPRITE_PATHS,
+  AUDIO_PATHS
+} from './config.js'
+
 export default class Game {
   constructor () {
     this.cvs = document.getElementById('bird')
@@ -13,15 +19,15 @@ export default class Game {
     this.DEGREE = Math.PI / 180
 
     this.sprite = new Image()
-    this.sprite.src = 'img/sprite.png'
+    this.sprite.src = SPRITE_PATHS.SPRITE
 
     this.loadSounds()
 
     this.state = {
-      current: 0,
-      getReady: 0,
-      game: 1,
-      over: 2
+      current: GAME_STATES.GET_READY,
+      getReady: GAME_STATES.GET_READY,
+      game: GAME_STATES.GAME,
+      over: GAME_STATES.OVER
     }
 
     this.startBtn = {
@@ -61,20 +67,11 @@ export default class Game {
   }
 
   loadSounds () {
-    this.SCORE_S = new Audio()
-    this.SCORE_S.src = 'audio/sfx_point.wav'
-
-    this.FLAP = new Audio()
-    this.FLAP.src = 'audio/sfx_flap.wav'
-
-    this.HIT = new Audio()
-    this.HIT.src = 'audio/sfx_hit.wav'
-
-    this.SWOOSHING = new Audio()
-    this.SWOOSHING.src = 'audio/sfx_swooshing.wav'
-
-    this.DIE = new Audio()
-    this.DIE.src = 'audio/sfx_die.wav'
+    this.SCORE_S = new Audio(AUDIO_PATHS.SCORE)
+    this.FLAP = new Audio(AUDIO_PATHS.FLAP)
+    this.HIT = new Audio(AUDIO_PATHS.HIT)
+    this.SWOOSHING = new Audio(AUDIO_PATHS.SWOOSHING)
+    this.DIE = new Audio(AUDIO_PATHS.DIE)
   }
 
   handleCanvasClick (evt) {

@@ -1,4 +1,7 @@
 import { game } from './game.js'
+import {
+  GAME_CONSTANTS
+} from './config.js'
 
 export default class Pipes {
   constructor (ctx, sprite, cvs) {
@@ -19,9 +22,11 @@ export default class Pipes {
 
     this.w = 53
     this.h = 400
-    this.gap = 130
+
     this.maxYPos = -150
-    this.dx = 2
+
+    this.gap = GAME_CONSTANTS.PIPE_GAP
+    this.dx = GAME_CONSTANTS.PIPE_SPEED
   }
 
   draw () {

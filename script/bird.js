@@ -1,5 +1,9 @@
 import { game } from './game.js'
 
+import {
+  GAME_CONSTANTS
+} from './config.js'
+
 export default class Bird {
   constructor (ctx, sprite, cvs) {
     this.ctx = ctx
@@ -21,10 +25,10 @@ export default class Bird {
     this.radius = 12
 
     this.frame = 0
-
-    this.gravity = 0.25
-    this.jump = 4.6
     this.speed = 0
+
+    this.jump = GAME_CONSTANTS.BIRD_JUMP
+    this.gravity = GAME_CONSTANTS.BIRD_GRAVITY
     this.rotation = 0
   }
 
