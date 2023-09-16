@@ -7,3 +7,10 @@ header {
   margin: 0 auto;
   width: 431px;
 }
+
+canvas {
+  user-select: none; /* Запретить выделение текста на канвасе */
+  -webkit-user-select: none; /* Для Safari */
+  -moz-user-select: none; /* Для Firefox */
+  -ms-user-select: none; /* Для IE/Edge */
+}
