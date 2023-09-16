@@ -75,6 +75,7 @@ export default class Game {
   }
 
   handleCanvasClick (evt) {
+    evt.preventDefault()
     switch (this.state.current) {
       case this.state.getReady:
         this.state.current = this.state.game
